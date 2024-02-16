@@ -5,6 +5,7 @@ import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Node
@@ -13,13 +14,13 @@ public class User {
     @Id @GeneratedValue private Long id;
     private String name;
     @Relationship(type = "BOUGHT", direction = Relationship.Direction.OUTGOING)
-    private Set<Product> boughtProducts;
+    private Set<Product> boughtProducts = new HashSet<>();
 
     @Relationship(type = "FOLLOWERS", direction = Relationship.Direction.INCOMING)
-    private Set<User> followers;
+    private Set<User> followers = new HashSet<>();
 
-    @Relationship(type = "FOLLOWS", direction = Relationship.Direction.OUTGOING)
-    private Set<User> follows;
+    @Relationship(type = "FOLLOWERS", direction = Relationship.Direction.OUTGOING)
+    private Set<User> follows = new HashSet<>();
 
     public User() {
     }
@@ -28,4 +29,15 @@ public class User {
         this.name = name;
     }
 
+    public void buy(Product product) {
+        boughtProducts.add(product);
+    }
+
+    public void follow(User user) {
+        follows.add(user);
+    }
+
+    public void followedBy(User user) {
+        followers.add(user);
+    }
 }

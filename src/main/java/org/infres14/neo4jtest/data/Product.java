@@ -5,6 +5,7 @@ import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Node
@@ -15,8 +16,8 @@ public class Product {
     private String description;
     private double price;
 
-    @Relationship(type = "BOUGHT_BY", direction = Relationship.Direction.INCOMING)
-    private Set<User> boughtBy;
+    @Relationship(type = "BOUGHT", direction = Relationship.Direction.INCOMING)
+    private Set<User> boughtBy = new HashSet<>();
 
     public Product() {
     }
@@ -56,4 +57,7 @@ public class Product {
         return "Product{" + "name=" + name + ", description=" + description + ", price=" + price + '}';
     }
 
+    public void boughtBy(User user) {
+        boughtBy.add(user);
+    }
 }

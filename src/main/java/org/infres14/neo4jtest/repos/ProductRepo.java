@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductRepo extends Neo4jRepository<Product, Long> {
+    Product findByName(String s);
+
 }

@@ -1,9 +1,12 @@
 package org.infres14.neo4jtest.services;
 
+import org.infres14.neo4jtest.data.Product;
 import org.infres14.neo4jtest.data.User;
 import org.infres14.neo4jtest.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 
 @Service
 public class UserService {
@@ -14,7 +17,26 @@ public class UserService {
     public UserService() {
     }
 
-    public void createUser(String s) {
-        repo.save(new User("name"));
+    public User createUser(String s) {
+        User user = new User(s);
+        repo.save(user);
+        return user;
+    }
+
+    public void buyProduct(User user, Product product) {
+        user.buy(product);
+        repo.save(user);
+    }
+
+    public void dump() {
+        repo.deleteAll();
+    }
+
+    public void save(User user) {
+        repo.save(user);
+    }
+
+    public void saveAll(User... users) {
+        repo.saveAll(Arrays.asList(users));
     }
 }
