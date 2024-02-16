@@ -1,6 +1,6 @@
-package org.infres14.neo4jtest.repos;
+package org.infres14.neo4jtest.nosql.repos;
 
-import org.infres14.neo4jtest.data.User;
+import org.infres14.neo4jtest.nosql.data.User;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.stereotype.Repository;
 
