@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -36,7 +37,7 @@ public class UserService {
         repo.save(user);
     }
 
-    public void saveAll(User... users) {
-        repo.saveAll(Arrays.asList(users));
+    public void saveAll(List<User> users) {
+        repo.saveAll(users);
     }
 }

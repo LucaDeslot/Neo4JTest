@@ -40,4 +40,8 @@ public class User {
     public void followedBy(User user) {
         followers.add(user);
     }
+
+    public int getFollowerCount() {
+        return followers.size();
+    }
 }
