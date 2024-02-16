@@ -31,19 +31,8 @@ public class StartRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         userService.dump();
         productService.dump();
-//        Product product = productService.createProduct("Product 1", "Product 1 description", 100);
-//        User user = userService.createUser("User 1");
-//        user.buy(product);
-//        product.boughtBy(user);
-//        userService.save(user);
-//        productService.save(product);
-//
-//        User user2 = userService.createUser("User 2");
-//        user2.follow(user);
-//        user.followedBy(user2);
-//        userService.saveAll(user, user2);
-        generateProducts(5);
-        generateUsers(4);
+
+        sampleDB();
     }
 
     private void generateProducts(int count) {
@@ -81,7 +70,52 @@ public class StartRunner implements ApplicationRunner {
             });
         });
 
-        // Sauvegarder les utilisateurs
         userService.saveAll(users);
+    }
+
+    private void sampleDB() {
+        // Produits précédemment définis
+        Product productA = new Product("ProductA", "DescriptionA", 100.0);
+        Product productB = new Product("ProductB", "DescriptionB", 150.0);
+        // Nouveaux produits exclusifs
+        Product productC = new Product("ProductC", "DescriptionC", 200.0);
+        Product productD = new Product("ProductD", "DescriptionD", 250.0);
+        productService.save(productA);
+        productService.save(productB);
+        productService.save(productC);
+        productService.save(productD);
+
+        // Utilisateurs et relations précédemment définis
+        User userA = new User("UserA");
+        User userB = new User("UserB");
+        User userC = new User("UserC");
+        User userD = new User("UserD");
+
+        // Définir les relations d'achat pour les produits partagés
+        userA.buy(productA);
+        userA.buy(productB);
+        userB.follow(userA);
+        userC.follow(userB);
+        userD.follow(userC);
+        userB.buy(productA);
+        userB.buy(productB);
+        userC.buy(productA);
+        userC.buy(productB);
+        userD.buy(productA);
+        userD.buy(productB);
+
+        // Assigner des produits exclusifs à certains utilisateurs
+        User userE = new User("UserE"); // Nouvel utilisateur qui achètera un produit exclusif
+        userE.buy(productC); // UserE achète ProductC, qui n'est acheté par personne d'autre
+        User userF = new User("UserF"); // Encore un nouvel utilisateur pour un autre produit exclusif
+        userF.buy(productD); // UserF achète ProductD, exclusivement
+
+        // Sauvegarder tous les utilisateurs et produits
+        userService.save(userA);
+        userService.save(userB);
+        userService.save(userC);
+        userService.save(userD);
+        userService.save(userE);
+        userService.save(userF);
     }
 }
