@@ -1,8 +1,8 @@
-package org.infres14.neo4jtest.services;
+package org.infres14.neo4jtest.nosql.services;
 
-import org.infres14.neo4jtest.data.Product;
-import org.infres14.neo4jtest.data.User;
-import org.infres14.neo4jtest.repos.UserRepo;
+import org.infres14.neo4jtest.nosql.data.Product;
+import org.infres14.neo4jtest.nosql.data.User;
+import org.infres14.neo4jtest.nosql.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

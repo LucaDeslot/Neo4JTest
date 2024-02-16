@@ -1,12 +1,11 @@
-package org.infres14.neo4jtest.services;
+package org.infres14.neo4jtest.nosql.services;
 
-import org.infres14.neo4jtest.data.Product;
-import org.infres14.neo4jtest.repos.ProductRepo;
+import org.infres14.neo4jtest.nosql.data.Product;
+import org.infres14.neo4jtest.nosql.repos.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class ProductService {

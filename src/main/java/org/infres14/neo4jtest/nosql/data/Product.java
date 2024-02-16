@@ -1,4 +1,4 @@
-package org.infres14.neo4jtest.data;
+package org.infres14.neo4jtest.nosql.data;
 
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
